@@ -1,0 +1,11 @@
+{
+    "typeCheckingMode": "basic",
+    "reportUnusedImport": false,
+    "reportUnknownVariableType": false,
+    "reportOptionalMemberAccess": false,
+    "reportUnusedCallResult": false,
+    "reportUnsupportedDunderAll": false,
+    "reportAny": false,
+    "exclude": ["venv"],
+    "reportReturnType": false
+}

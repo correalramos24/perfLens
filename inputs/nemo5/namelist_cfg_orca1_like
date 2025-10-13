@@ -1,0 +1,131 @@
+&namrun
+    cn_exp = 'BENCH'
+    nn_it000 = 1
+    nn_itend = 100
+    nn_stock = -1
+    nn_write = -1
+/
+
+&namusr_def
+    nn_isize = 360
+    nn_jsize = 331
+    nn_ksize = 75
+    ln_iperio = .true.
+    ln_jperio = .false.
+    ln_nfold = .true.
+    cn_nftype = 'F'
+/
+
+&nammpp
+    ln_nnogather = .true.
+    jpni = 40
+    jpnj = 22
+/
+
+&namctl
+    ln_timing = .true.
+/
+
+&namdom
+    rn_dt = 5400.0
+    ln_meshmask = .false.
+/
+
+&namsbc
+    ln_usr = .true.
+    nn_ice = 2
+    ln_traqsr = .true.
+/
+
+&namlbc
+    rn_shlat = 0.0
+/
+
+&namtra_qsr
+    ln_qsr_rgb = .true.
+    nn_chldta = 0
+/
+
+&namdrg
+    ln_non_lin = .true.
+/
+
+&nambbc
+    ln_trabbc = .true.
+    nn_geoflx = 1
+/
+
+&nambbl
+    ln_trabbl = .true.
+/
+
+&nameos
+    ln_teos10 = .true.
+/
+
+&namtra_adv
+    ln_traadv_cen = .true.
+    nn_cen_h = 2
+    nn_cen_v = 2
+    ln_traadv_fct = .false.
+    nn_fct_h = 2
+    nn_fct_v = 2
+/
+
+&namtra_ldf
+    ln_traldf_lap = .true.
+    ln_traldf_iso = .true.
+    nn_aht_ijk_t = 20
+/
+
+&namtra_mle
+    ln_mle = .true.
+/
+
+&namtra_eiv
+    ln_ldfeiv = .true.
+    nn_aei_ijk_t = 20
+/
+
+&nam_vvl
+    ln_vvl_zstar = .true.
+    ln_vvl_dbg = .false.
+/
+
+&namdyn_adv
+    ln_dynadv_vec = .true.
+    nn_dynkeg = 1
+/
+
+&namdyn_vor
+    ln_dynvor_een = .true.
+/
+
+&namdyn_hpg
+    ln_hpg_sco = .true.
+/
+
+&namdyn_spg
+    ln_dynspg_ts = .true.
+    ln_bt_auto = .false.
+    nn_e = 65
+/
+
+&namdyn_ldf
+    ln_dynldf_lap = .true.
+    ln_dynldf_hor = .true.
+    nn_ahm_ijk_t = 30
+/
+
+&namzdf
+    ln_zdftke = .true.
+    ln_zdfevd = .true.
+    ln_zdfddm = .true.
+    ln_zdfiwm = .true.
+/
+
+&namtile
+    ln_tile = .true.
+    nn_ltile_i = 99999
+    nn_ltile_j = 99999
+/

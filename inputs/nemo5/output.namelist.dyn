@@ -1,0 +1,891 @@
+ &NAMCTL
+ SN_CFCTL%L_RUNSTAT       = F,
+ SN_CFCTL%L_TRCSTAT       = F,
+ SN_CFCTL%L_OBSSTAT       = F,
+ SN_CFCTL%L_OCEOUT        = F,
+ SN_CFCTL%L_LAYOUT        = F,
+ SN_CFCTL%L_PRTCTL        = F,
+ SN_CFCTL%L_PRTTRC        = F,
+ SN_CFCTL%L_OASOUT        = F,
+ SN_CFCTL%PROCMIN =           0,
+ SN_CFCTL%PROCMAX =     1000000,
+ SN_CFCTL%PROCINCR        =           1,
+ SN_CFCTL%PTIMINCR        =           1,
+ LN_TIMING       = T,
+ LN_DIACFL       = F,
+ NN_ISPLT        =           1,
+ NN_JSPLT        =           1,
+ NN_ICTLS        =           0,
+ NN_ICTLE        =           0,
+ NN_JCTLS        =           0,
+ NN_JCTLE        =           0
+ /
+ &NAMUSR_DEF
+ NN_ISIZE        =         360,
+ NN_JSIZE        =         331,
+ NN_KSIZE        =          75,
+ LN_IPERIO       = T,
+ LN_JPERIO       = F,
+ LN_NFOLD        = T,
+ CN_NFTYPE       = F
+ /
+ &NAMCFG
+ LN_READ_CFG     = F,
+ CN_DOMCFG       = domain_cfg                                                                                                        
+                                                                                                                                     
+           ,
+ LN_CLOSEA       = F,
+ LN_WRITE_CFG    = F,
+ CN_DOMCFG_OUT   = domain_cfg_out                                                                                                    
+                                                                                                                                     
+           
+ /
+ &NAMMPP
+ JPNI    =          40,
+ JPNJ    =          22,
+ NN_HLS  =           2,
+ LN_NNOGATHER    = T,
+ LN_MPPDELAY     = T,
+ LN_LISTONLY     = F,
+ NN_COMM =           1
+ /
+ &NAMEOS
+ LN_TEOS10       = T,
+ LN_EOS80        = F,
+ LN_SEOS = F,
+ RN_T0   =   10.0000000000000     ,
+ RN_S0   =   35.0000000000000     ,
+ RN_A0   =  0.165500000000000     ,
+ RN_B0   =  0.765540000000000     ,
+ RN_LAMBDA1      =  5.952000000000000E-002,
+ RN_MU1  =  1.497000000000000E-004,
+ RN_LAMBDA2      =  7.491400000000000E-004,
+ RN_MU2  =  1.109000000000000E-005,
+ RN_NU   =  2.434100000000000E-003
+ /
+ &NAMWAD
+ LN_WD_DL        = F,
+ RN_WDMIN0       =  0.300000000000000     ,
+ RN_WDMIN1       =  0.200000000000000     ,
+ RN_WDMIN2       =  1.000000000000000E-004,
+ RN_WDLD =   2.50000000000000     ,
+ LN_WD_DL_BC     = F,
+ LN_WD_DL_RMP    = F,
+ RN_WD_SBCDEP    =   5.00000000000000     ,
+ RN_WD_SBCFRA    =  0.999000000000000     
+ /
+ &NAMDOM
+ RN_DT   =   5400.00000000000     ,
+ LN_C1D  = F,
+ LN_MESHMASK     = F,
+ LN_SHUMAN       = F
+ /
+ &NAMRUN
+ CN_OCERST_INDIR = .                                                                                                                 
+                                                                                                                                     
+           ,
+ CN_OCERST_OUTDIR        = .                                                                                                         
+                                                                                                                                     
+                   ,
+ NN_STOCKLIST    = 10*0,
+ LN_RST_LIST     = F,
+ NN_NO   =           0,
+ CN_EXP  = BENCH                                                                                                                     
+                                                                                                                                     
+   ,
+ CN_OCERST_IN    = restart                                                                                                           
+                                                                                                                                     
+           ,
+ CN_OCERST_OUT   = restart                                                                                                           
+                                                                                                                                     
+           ,
+ LN_RSTART       = F,
+ NN_RSTCTL       =           0,
+ NN_IT000        =           1,
+ NN_ITEND        =         100,
+ NN_DATE0        =       10101,
+ NN_TIME0        =           0,
+ NN_LEAPY        =           0,
+ NN_ISTATE       =           0,
+ NN_STOCK        =          -1,
+ NN_WRITE        =          -1,
+ LN_MSKLAND      = F,
+ LN_CLOBBER      = T,
+ NN_CHUNKSZ      =           0,
+ LN_CFMETA       = F,
+ LN_XIOS_READ    = F,
+ NN_WXIOS        =           0,
+ LN_TOP  = T
+ /
+ &NAMTILE
+ LN_TILE = T,
+ NN_LTILE_I      =       99999,
+ NN_LTILE_J      =       99999
+ /
+ &NAMNC4
+ NN_NCHUNKS_I    =           4,
+ NN_NCHUNKS_J    =           4,
+ NN_NCHUNKS_K    =          31,
+ LN_NC4ZIP       = F
+ /
+ &NAMLBC
+ RN_SHLAT        =  0.000000000000000E+000,
+ LN_VORLAT       = F
+ /
+ &NAM_VVL
+ LN_VVL_ZSTAR    = T,
+ LN_VVL_ZTILDE   = F,
+ LN_VVL_LAYER    = F,
+ LN_VVL_ZTILDE_AS_ZSTAR  = F,
+ LN_VVL_ZSTAR_AT_EQTOR   = F,
+ RN_AHE3 =  0.000000000000000E+000,
+ RN_RST_E3T      =   30.0000000000000     ,
+ RN_LF_CUTOFF    =   5.00000000000000     ,
+ RN_ZDEF_MAX     =  0.900000000000000     ,
+ LN_VVL_DBG      = F,
+ NN_VVL_INTERP   =           2
+ /
+ &NAMTSD
+ LN_TSD_INIT     = F,
+ LN_TSD_DMP      = F,
+ CN_DIR  = ./                                                                                                  ,
+ SN_TEM%CLNAME  = data_1m_potential_temperature_nomask                                                                               
+                                                                                                                                     
+          ,
+ SN_TEM%FREQH   =  -1.00000000000000     ,
+ SN_TEM%CLVAR   = votemper                          ,
+ SN_TEM%LN_TINT = T,
+ SN_TEM%LN_CLIM = T,
+ SN_TEM%CLFTYP  = yearly  ,
+ SN_TEM%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_TEM%VCOMP   =                                   ,
+ SN_TEM%LNAME   =                                   ,
+ SN_SAL%CLNAME  = data_1m_salinity_nomask                                                                                            
+                                                                                                                                     
+          ,
+ SN_SAL%FREQH   =  -1.00000000000000     ,
+ SN_SAL%CLVAR   = vosaline                          ,
+ SN_SAL%LN_TINT = T,
+ SN_SAL%LN_CLIM = T,
+ SN_SAL%CLFTYP  = yearly  ,
+ SN_SAL%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_SAL%VCOMP   =                                   ,
+ SN_SAL%LNAME   =                                   
+ /
+ &NAM_TIDE
+ LN_TIDE = F,
+ NN_TIDE_VAR     =           1,
+ LN_TIDE_POT     = F,
+ RN_TIDE_GAMMA   =  0.700000000000000     ,
+ LN_SCAL_LOAD    = F,
+ LN_READ_LOAD    = F,
+ CN_TIDE_LOAD    = tide_LOAD_grid_T.nc                                                                                               
+                                                                                                                                     
+           ,
+ LN_TIDE_RAMP    = F,
+ RN_SCAL_LOAD    =  9.400000000000000E-002,
+ RN_TIDE_RAMP_DT =  0.000000000000000E+000,
+ SN_TIDE_CNAMES  = DUMM                                                                                                              
+                                                                                                                                     
+           
+ /
+ &NAMSBC
+ NN_FSBC =           2,
+ LN_USR  = T,
+ LN_FLX  = F,
+ LN_BLK  = F,
+ LN_ABL  = F,
+ LN_CPL  = F,
+ LN_MIXCPL       = F,
+ NN_COMPONENTS   =           0,
+ NN_ICE  =           2,
+ LN_ICE_EMBD     = F,
+ LN_TRAQSR       = T,
+ LN_DM2DC        = F,
+ LN_RNF  = F,
+ NN_FWB  =           0,
+ LN_SSR  = F,
+ LN_APR_DYN      = F,
+ LN_WAVE = F,
+ NN_LSM  =           0
+ /
+ &NAMSBC_RNF
+ CN_DIR  = ./                                                                                                  ,
+ LN_RNF_DEPTH    = F,
+ LN_RNF_TEM      = F,
+ LN_RNF_SAL      = F,
+ LN_RNF_ICB      = F,
+ SN_RNF%CLNAME  = runoff_core_monthly                                                                                                
+                                                                                                                                     
+          ,
+ SN_RNF%FREQH   =  -1.00000000000000     ,
+ SN_RNF%CLVAR   = sorunoff                          ,
+ SN_RNF%LN_TINT = T,
+ SN_RNF%LN_CLIM = T,
+ SN_RNF%CLFTYP  = yearly  ,
+ SN_RNF%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_RNF%VCOMP   =                                   ,
+ SN_RNF%LNAME   =                                   ,
+ SN_CNF%CLNAME  = runoff_core_monthly                                                                                                
+                                                                                                                                     
+          ,
+ SN_CNF%FREQH   =  -12.0000000000000     ,
+ SN_CNF%CLVAR   = socoefr0                          ,
+ SN_CNF%LN_TINT = F,
+ SN_CNF%LN_CLIM = T,
+ SN_CNF%CLFTYP  = yearly  ,
+ SN_CNF%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_CNF%VCOMP   =                                   ,
+ SN_CNF%LNAME   =                                   ,
+ SN_I_RNF%CLNAME  = NOT USED                                                                                                         
+                                                                                                                                     
+            ,
+ SN_I_RNF%FREQH   =   24.0000000000000     ,
+ SN_I_RNF%CLVAR   = xxxxxxxx                          ,
+ SN_I_RNF%LN_TINT = T,
+ SN_I_RNF%LN_CLIM = T,
+ SN_I_RNF%CLFTYP  = yearly  ,
+ SN_I_RNF%WNAME   =                                                                                                                  
+                                                                                                                                     
+            ,
+ SN_I_RNF%VCOMP   =                                   ,
+ SN_I_RNF%LNAME   =                                   ,
+ SN_S_RNF%CLNAME  = runoffs                                                                                                          
+                                                                                                                                     
+            ,
+ SN_S_RNF%FREQH   =   24.0000000000000     ,
+ SN_S_RNF%CLVAR   = rosaline                          ,
+ SN_S_RNF%LN_TINT = T,
+ SN_S_RNF%LN_CLIM = T,
+ SN_S_RNF%CLFTYP  = yearly  ,
+ SN_S_RNF%WNAME   =                                                                                                                  
+                                                                                                                                     
+            ,
+ SN_S_RNF%VCOMP   =                                   ,
+ SN_S_RNF%LNAME   =                                   ,
+ SN_T_RNF%CLNAME  = runoffs                                                                                                          
+                                                                                                                                     
+            ,
+ SN_T_RNF%FREQH   =   24.0000000000000     ,
+ SN_T_RNF%CLVAR   = rotemper                          ,
+ SN_T_RNF%LN_TINT = T,
+ SN_T_RNF%LN_CLIM = T,
+ SN_T_RNF%CLFTYP  = yearly  ,
+ SN_T_RNF%WNAME   =                                                                                                                  
+                                                                                                                                     
+            ,
+ SN_T_RNF%VCOMP   =                                   ,
+ SN_T_RNF%LNAME   =                                   ,
+ SN_DEP_RNF%CLNAME  = runoffs                                                                                                        
+                                                                                                                                     
+              ,
+ SN_DEP_RNF%FREQH   =  -12.0000000000000     ,
+ SN_DEP_RNF%CLVAR   = rodepth                           ,
+ SN_DEP_RNF%LN_TINT = F,
+ SN_DEP_RNF%LN_CLIM = T,
+ SN_DEP_RNF%CLFTYP  = yearly  ,
+ SN_DEP_RNF%WNAME   =                                                                                                                
+                                                                                                                                     
+              ,
+ SN_DEP_RNF%VCOMP   =                                   ,
+ SN_DEP_RNF%LNAME   =                                   ,
+ LN_RNF_MOUTH    = F,
+ RN_HRNF =   15.0000000000000     ,
+ RN_AVT_RNF      =  1.000000000000000E-003,
+ RN_RFACT        =   1.00000000000000     ,
+ LN_RNF_DEPTH_INI        = F,
+ RN_DEP_MAX      =   150.000000000000     ,
+ RN_RNF_MAX      =  5.735000000000000E-004,
+ NN_RNF_DEPTH_FILE       =           0
+ /
+ &NAMBDY
+ LN_BDY  = F,
+ NB_BDY  =           0,
+ LN_COORDS_FILE  = 10*T,
+ CN_COORDS_FILE  = coordinates.bdy.nc                                                              coordinates.bdy.nc                
+                                               coordinates.bdy.nc                                                              coordi
+ nates.bdy.nc                                                              coordinates.bdy.nc                                        
+                       coordinates.bdy.nc                                                              coordinates.bdy.nc            
+                                                   coordinates.bdy.nc                                                              co
+ ordinates.bdy.nc                                                              coordinates.bdy.nc                                    
+                           ,
+ LN_MASK_FILE    = F,
+ CN_MASK_FILE    =                                                                                 ,
+ CN_DYN2D        = none                none                none                none                none                none          
+       none                none                none                none                ,
+ NN_DYN2D_DTA    = 10*0,
+ CN_DYN3D        = none                none                none                none                none                none          
+       none                none                none                none                ,
+ NN_DYN3D_DTA    = 10*0,
+ CN_TRA  = none                none                none                none                none                none                no
+ ne                none                none                none                ,
+ NN_TRA_DTA      = 10*0,
+ LN_TRA_DMP      = 10*F,
+ LN_DYN3D_DMP    = 10*F,
+ RN_TIME_DMP     = 10*1.00000000000000        ,
+ RN_TIME_DMP_OUT = 10*1.00000000000000        ,
+ CN_ICE  = none                none                none                none                none                none                no
+ ne                none                none                none                ,
+ NN_ICE_DTA      = 10*0,
+ LN_VOL  = F,
+ NN_VOLCTL       =           1,
+ NN_RIMWIDTH     = 10*10
+ /
+ &NAMZDF
+ LN_ZDFCST       = F,
+ LN_ZDFRIC       = F,
+ LN_ZDFTKE       = T,
+ LN_ZDFGLS       = F,
+ LN_ZDFOSM       = F,
+ LN_ZDFMFC       = F,
+ LN_ZDFEVD       = T,
+ NN_EVDM =           0,
+ RN_EVD  =   100.000000000000     ,
+ LN_ZDFNPC       = F,
+ NN_NPC  =           1,
+ NN_NPCP =         365,
+ LN_ZDFDDM       = T,
+ RN_AVTS =  1.000000000000000E-004,
+ RN_HSBFR        =   1.60000000000000     ,
+ LN_ZDFSWM       = F,
+ LN_ZDFIWM       = T,
+ LN_ZAD_AIMP     = F,
+ RN_AVM0 =  1.200000000000000E-004,
+ RN_AVT0 =  1.200000000000000E-005,
+ NN_AVB  =           0,
+ NN_HAVTB        =           0
+ /
+ &NAMZDF_TKE
+ RN_EDIFF        =  0.100000000000000     ,
+ RN_EDISS        =  0.700000000000000     ,
+ RN_EBB  =   67.8300000000000     ,
+ RN_EMIN =  1.000000000000000E-006,
+ RN_EMIN0        =  1.000000000000000E-004,
+ RN_BSHEAR       =  9.999999999999999E-021,
+ NN_MXL  =           3,
+ LN_MXL0 = T,
+ RN_MXL0 =  4.000000000000000E-002,
+ NN_MXLICE       =           0,
+ RN_MXLICE       =   10.0000000000000     ,
+ NN_PDL  =           1,
+ LN_LC   = T,
+ RN_LC   =  0.150000000000000     ,
+ NN_ETAU =           1,
+ NN_HTAU =           1,
+ RN_EFR  =  5.000000000000000E-002,
+ NN_EICE =           1,
+ NN_BC_SURF      =           1,
+ NN_BC_BOT       =           1,
+ LN_MXHSW        = F
+ /
+ &NAMZDF_IWM
+ LN_MEVAR        = F,
+ LN_TSDIFF       = T,
+ CN_DIR  = ./                                                                                                                        
+                                                                                                                                     
+   ,
+ SN_MPB%CLNAME  = NOT USED                                                                                                           
+                                                                                                                                     
+          ,
+ SN_MPB%FREQH   =  -12.0000000000000     ,
+ SN_MPB%CLVAR   = power_bot                         ,
+ SN_MPB%LN_TINT = F,
+ SN_MPB%LN_CLIM = T,
+ SN_MPB%CLFTYP  = yearly  ,
+ SN_MPB%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_MPB%VCOMP   =                                   ,
+ SN_MPB%LNAME   =                                   ,
+ SN_MPC%CLNAME  = NOT USED                                                                                                           
+                                                                                                                                     
+          ,
+ SN_MPC%FREQH   =  -12.0000000000000     ,
+ SN_MPC%CLVAR   = power_cri                         ,
+ SN_MPC%LN_TINT = F,
+ SN_MPC%LN_CLIM = T,
+ SN_MPC%CLFTYP  = yearly  ,
+ SN_MPC%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_MPC%VCOMP   =                                   ,
+ SN_MPC%LNAME   =                                   ,
+ SN_MPN%CLNAME  = NOT USED                                                                                                           
+                                                                                                                                     
+          ,
+ SN_MPN%FREQH   =  -12.0000000000000     ,
+ SN_MPN%CLVAR   = power_nsq                         ,
+ SN_MPN%LN_TINT = F,
+ SN_MPN%LN_CLIM = T,
+ SN_MPN%CLFTYP  = yearly  ,
+ SN_MPN%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_MPN%VCOMP   =                                   ,
+ SN_MPN%LNAME   =                                   ,
+ SN_MPS%CLNAME  = NOT USED                                                                                                           
+                                                                                                                                     
+          ,
+ SN_MPS%FREQH   =  -12.0000000000000     ,
+ SN_MPS%CLVAR   = power_sho                         ,
+ SN_MPS%LN_TINT = F,
+ SN_MPS%LN_CLIM = T,
+ SN_MPS%CLFTYP  = yearly  ,
+ SN_MPS%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_MPS%VCOMP   =                                   ,
+ SN_MPS%LNAME   =                                   ,
+ SN_DSB%CLNAME  = NOT USED                                                                                                           
+                                                                                                                                     
+          ,
+ SN_DSB%FREQH   =  -12.0000000000000     ,
+ SN_DSB%CLVAR   = scale_bot                         ,
+ SN_DSB%LN_TINT = F,
+ SN_DSB%LN_CLIM = T,
+ SN_DSB%CLFTYP  = yearly  ,
+ SN_DSB%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_DSB%VCOMP   =                                   ,
+ SN_DSB%LNAME   =                                   ,
+ SN_DSC%CLNAME  = NOT USED                                                                                                           
+                                                                                                                                     
+          ,
+ SN_DSC%FREQH   =  -12.0000000000000     ,
+ SN_DSC%CLVAR   = scale_cri                         ,
+ SN_DSC%LN_TINT = F,
+ SN_DSC%LN_CLIM = T,
+ SN_DSC%CLFTYP  = yearly  ,
+ SN_DSC%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_DSC%VCOMP   =                                   ,
+ SN_DSC%LNAME   =                                   
+ /
+ &NAMDRG
+ LN_DRG_OFF      = F,
+ LN_LIN  = F,
+ LN_NON_LIN      = T,
+ LN_LOGLAYER     = F,
+ LN_DRGIMP       = T,
+ LN_DRGICE_IMP   = T
+ /
+ &NAMDRG_BOT
+ RN_CD0  =  1.000000000000000E-003,
+ RN_UC0  =  0.400000000000000     ,
+ RN_CDMAX        =  0.100000000000000     ,
+ RN_KE0  =  2.500000000000000E-003,
+ RN_Z0   =  3.000000000000000E-003,
+ LN_BOOST        = F,
+ RN_BOOST        =   50.0000000000000     
+ /
+ &NAMTRA_LDF
+ LN_TRALDF_OFF   = F,
+ LN_TRALDF_LAP   = T,
+ LN_TRALDF_BLP   = F,
+ LN_TRALDF_LEV   = F,
+ LN_TRALDF_HOR   = F,
+ LN_TRALDF_TRIAD = F,
+ LN_TRALDF_ISO   = T,
+ LN_TRALDF_MSC   = F,
+ RN_SLPMAX       =  1.000000000000000E-002,
+ LN_TRIAD_ISO    = F,
+ LN_BOTMIX_TRIAD = F,
+ RN_SW_TRIAD     =   1.00000000000000     ,
+ NN_AHT_IJK_T    =          20,
+ RN_UD   =  1.000000000000000E-002,
+ RN_LD   =   200000.000000000     
+ /
+ &NAMTRA_EIV
+ LN_LDFEIV       = T,
+ NN_AEI_IJK_T    =          20,
+ RN_UE   =  2.000000000000000E-002,
+ RN_LE   =   200000.000000000     ,
+ LN_EKE_EQU      = F
+ /
+ &NAMDYN_LDF
+ LN_DYNLDF_OFF   = F,
+ NN_DYNLDF_TYP   =           0,
+ LN_DYNLDF_LAP   = T,
+ LN_DYNLDF_BLP   = F,
+ LN_DYNLDF_LEV   = F,
+ LN_DYNLDF_HOR   = T,
+ LN_DYNLDF_ISO   = F,
+ NN_AHM_IJK_T    =          30,
+ RN_UV   =  0.100000000000000     ,
+ RN_LV   =   10000.0000000000     ,
+ RN_AHM_B        =  0.000000000000000E+000,
+ RN_CSMC =   3.50000000000000     ,
+ RN_MINFAC       =   1.00000000000000     ,
+ RN_MAXFAC       =   1.00000000000000     
+ /
+ &NAMTRA_QSR
+ SN_CHL%CLNAME  = chlorophyll                                                                                                        
+                                                                                                                                     
+          ,
+ SN_CHL%FREQH   =  -1.00000000000000     ,
+ SN_CHL%CLVAR   = CHLA                              ,
+ SN_CHL%LN_TINT = T,
+ SN_CHL%LN_CLIM = T,
+ SN_CHL%CLFTYP  = yearly  ,
+ SN_CHL%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_CHL%VCOMP   =                                   ,
+ SN_CHL%LNAME   =                                   ,
+ CN_DIR  = ./                                                                                                                        
+                                                                                                                                     
+   ,
+ LN_QSR_RGB      = T,
+ LN_QSR_2BD      = F,
+ LN_QSR_5BD      = F,
+ LN_QSR_BIO      = F,
+ NN_CHLDTA       =           0,
+ NN_CHLPRFL      =           1,
+ RN_ABS  =  0.580000000000000     ,
+ RN_PAR  =  0.470000000000000     ,
+ RN_SI0  =  0.350000000000000     ,
+ RN_SI1  =   23.0000000000000     
+ /
+ &NAMBBC
+ LN_TRABBC       = T,
+ NN_GEOFLX       =           1,
+ RN_GEOFLX_CST   =  8.640000000000000E-002,
+ SN_QGH%CLNAME  = geothermal_heating.nc                                                                                              
+                                                                                                                                     
+          ,
+ SN_QGH%FREQH   =  -12.0000000000000     ,
+ SN_QGH%CLVAR   = heatflow                          ,
+ SN_QGH%LN_TINT = F,
+ SN_QGH%LN_CLIM = T,
+ SN_QGH%CLFTYP  = yearly  ,
+ SN_QGH%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_QGH%VCOMP   =                                   ,
+ SN_QGH%LNAME   =                                   ,
+ CN_DIR  = ./                                                                                                                        
+                                                                                                                                     
+   
+ /
+ &NAMBBL
+ LN_TRABBL       = T,
+ NN_BBL_LDF      =           1,
+ NN_BBL_ADV      =           0,
+ RN_AHTBBL       =   1000.00000000000     ,
+ RN_GAMBBL       =   10.0000000000000     
+ /
+ &NAMTRA_DMP
+ LN_TRADMP       = F,
+ NN_ZDMP =           0,
+ CN_RESTO        = resto.nc                                                                                                          
+                                                                                       
+ /
+ &NAMTRA_ADV
+ LN_TRAADV_OFF   = F,
+ LN_TRAADV_CEN   = T,
+ NN_CEN_H        =           2,
+ NN_CEN_V        =           2,
+ LN_TRAADV_FCT   = F,
+ NN_FCT_H        =           2,
+ NN_FCT_V        =           2,
+ NN_FCT_IMP      =           1,
+ LN_TRAADV_MUS   = F,
+ LN_MUS_UPS      = F,
+ LN_TRAADV_UBS   = F,
+ NN_UBS_V        =           2,
+ LN_TRAADV_QCK   = F
+ /
+ &NAMTRA_MLE
+ LN_MLE  = T,
+ NN_MLE  =           1,
+ RN_CE   =  6.000000000000000E-002,
+ RN_LF   =   5000.00000000000     ,
+ RN_TIME =   172800.000000000     ,
+ RN_LAT  =   20.0000000000000     ,
+ NN_MLD_UV       =           0,
+ NN_CONV =           0,
+ RN_RHO_C_MLE    =  1.000000000000000E-002
+ /
+ &NAMDYN_ADV
+ LN_DYNADV_OFF   = F,
+ LN_DYNADV_VEC   = T,
+ NN_DYNKEG       =           1,
+ LN_DYNADV_CEN2  = F,
+ LN_DYNADV_UP3   = F
+ /
+ &NAMDYN_VOR
+ LN_DYNVOR_ENS   = F,
+ LN_DYNVOR_ENE   = F,
+ LN_DYNVOR_ENT   = F,
+ LN_DYNVOR_EEN   = T,
+ NN_E3F_TYP      =           0,
+ LN_DYNVOR_MIX   = F,
+ LN_DYNVOR_MSK   = F
+ /
+ &NAMDYN_HPG
+ LN_HPG_ZCO      = F,
+ LN_HPG_SCO      = T,
+ LN_HPG_DJC      = F,
+ LN_HPG_PRJ      = F,
+ LN_HPG_ISF      = F,
+ LN_HPG_DJC_VNH  = T,
+ LN_HPG_DJC_VNV  = T
+ /
+ &NAMDYN_SPG
+ LN_DYNSPG_EXP   = F,
+ LN_DYNSPG_TS    = T,
+ LN_BT_AUTO      = F,
+ NN_E    =          65,
+ RN_BT_CMAX      =  0.800000000000000     ,
+ NN_BT_FLT       =           1,
+ RN_BT_ALPHA     =  0.000000000000000E+000
+ /
+ &NAMBERG
+ LN_ICEBERGS     = F,
+ LN_BERGDIA      = T,
+ RN_SAMPLE_RATE_DAYS     =   2.00000000000000     ,
+ RN_INITIAL_MASS =   88000000.0000000     ,   410000000.000000     ,   3300000000.00000     ,   18000000000.0000     ,
+    38000000000.0000     ,   75000000000.0000     ,   120000000000.000     ,   220000000000.000     ,   390000000000.000     ,
+    740000000000.000     ,
+ RN_DISTRIBUTION =  0.240000000000000     ,  0.120000000000000     ,  0.150000000000000     ,  0.180000000000000     ,
+   0.120000000000000     ,  7.000000000000001E-002, 3*3.000000000000000E-002  ,  2.000000000000000E-002,
+ RN_MASS_SCALING =   2000.00000000000     ,   200.000000000000     ,   50.0000000000000     ,   20.0000000000000     ,
+    10.0000000000000     ,   5.00000000000000     ,   2.00000000000000     , 3*1.00000000000000        ,
+ RN_INITIAL_THICKNESS    =   40.0000000000000     ,   67.0000000000000     ,   133.000000000000     ,   175.000000000000     ,
+  6*250.000000000000        ,
+ RN_VERBOSE_WRITE_DAYS   =   2.00000000000000     ,
+ RN_RHO_BERGS    =   850.000000000000     ,
+ RN_LOW_RATIO    =   1.50000000000000     ,
+ NN_VERBOSE_LEVEL        =           0,
+ LN_OPERATOR_SPLITTING   = T,
+ RN_BITS_EROSION_FRACTION        =  0.000000000000000E+000,
+ RN_SICN_SHIFT   =  0.000000000000000E+000,
+ LN_PASSIVE_MODE = F,
+ LN_TIME_AVERAGE_WEIGHT  = F,
+ NN_TEST_ICEBERGS        =           0,
+ RN_TEST_BOX     =   108.000000000000     ,   116.000000000000     ,  -66.0000000000000     ,  -58.0000000000000     ,
+ LN_USE_CALVING  = F,
+ RN_SPEED_LIMIT  =  0.000000000000000E+000,
+ CN_DIR  = ./                                                                                                  ,
+ SN_ICB%CLNAME  = calving                                                                                                            
+                                                                                                                                     
+          ,
+ SN_ICB%FREQH   =  -1.00000000000000     ,
+ SN_ICB%CLVAR   = calvingmask                       ,
+ SN_ICB%LN_TINT = T,
+ SN_ICB%LN_CLIM = T,
+ SN_ICB%CLFTYP  = yearly  ,
+ SN_ICB%WNAME   =                                                                                                                    
+                                                                                                                                     
+          ,
+ SN_ICB%VCOMP   =                                   ,
+ SN_ICB%LNAME   =                                   ,
+ LN_M2016        = F,
+ CN_ICBRST_INDIR = ./                                                                                                                
+                                                                                                                                     
+           ,
+ CN_ICBRST_IN    = restart_icb                                                                                                       
+                                                                                                                                     
+           ,
+ CN_ICBRST_OUTDIR        = ./                                                                                                        
+                                                                                                                                     
+                   ,
+ CN_ICBRST_OUT   = restart_icb                                                                                                       
+                                                                                                                                     
+           ,
+ LN_ICB_GRD      = F,
+ LN_USE_TEST     = F,
+ LN_ICB_BAS      = F,
+ LN_RST_TEST_BAS = F,
+ CN_ICBBASINS_FILE       = icbbasinid.nc                                                                                             
+                                                                                                                                     
+                   ,
+ CN_ICBBASINS_VAR2D      = basinid                                                                                                   
+                                                                                                                                     
+                   ,
+ CN_ICBBASINS_VAR1D      = basins                                                                                                    
+                                                                                                                                     
+                   ,
+ NN_ICB_BASINS   =          20
+ /
+ &NAMISF
+ LN_ISF  = F,
+ CN_GAMMABLK     = vel                                                                                                               
+                                                                                                                                     
+           ,
+ RN_GAMMAT0      =  1.400000000000000E-002,
+ RN_GAMMAS0      =  4.000000000000000E-004,
+ RN_HTBL =   30.0000000000000     ,
+ SN_ISFCAV_FWF%CLNAME  = isfmlt_cav                                                                                                  
+                                                                                                                                     
+                 ,
+ SN_ISFCAV_FWF%FREQH   =  -12.0000000000000     ,
+ SN_ISFCAV_FWF%CLVAR   = fwflisf                           ,
+ SN_ISFCAV_FWF%LN_TINT = F,
+ SN_ISFCAV_FWF%LN_CLIM = T,
+ SN_ISFCAV_FWF%CLFTYP  = yearly  ,
+ SN_ISFCAV_FWF%WNAME   =                                                                                                             
+                                                                                                                                     
+                 ,
+ SN_ISFCAV_FWF%VCOMP   =                                   ,
+ SN_ISFCAV_FWF%LNAME   =                                   ,
+ LN_ISFCAV_MLT   = F,
+ CN_ISFCAV_MLT   = 3eq                                                                                                               
+                                                                                                                                     
+           ,
+ SN_ISFCAV_FWF%CLNAME  = isfmlt_cav                                                                                                  
+                                                                                                                                     
+                 ,
+ SN_ISFCAV_FWF%FREQH   =  -12.0000000000000     ,
+ SN_ISFCAV_FWF%CLVAR   = fwflisf                           ,
+ SN_ISFCAV_FWF%LN_TINT = F,
+ SN_ISFCAV_FWF%LN_CLIM = T,
+ SN_ISFCAV_FWF%CLFTYP  = yearly  ,
+ SN_ISFCAV_FWF%WNAME   =                                                                                                             
+                                                                                                                                     
+                 ,
+ SN_ISFCAV_FWF%VCOMP   =                                   ,
+ SN_ISFCAV_FWF%LNAME   =                                   ,
+ LN_ISFPAR_MLT   = F,
+ CN_ISFPAR_MLT   = spe                                                                                                               
+                                                                                                                                     
+           ,
+ SN_ISFPAR_FWF%CLNAME  = isfmlt_par                                                                                                  
+                                                                                                                                     
+                 ,
+ SN_ISFPAR_FWF%FREQH   =  -12.0000000000000     ,
+ SN_ISFPAR_FWF%CLVAR   = sofwfisf                          ,
+ SN_ISFPAR_FWF%LN_TINT = F,
+ SN_ISFPAR_FWF%LN_CLIM = T,
+ SN_ISFPAR_FWF%CLFTYP  = yearly  ,
+ SN_ISFPAR_FWF%WNAME   =                                                                                                             
+                                                                                                                                     
+                 ,
+ SN_ISFPAR_FWF%VCOMP   =                                   ,
+ SN_ISFPAR_FWF%LNAME   =                                   ,
+ SN_ISFPAR_ZMIN%CLNAME  = isfmlt_par                                                                                                 
+                                                                                                                                     
+                  ,
+ SN_ISFPAR_ZMIN%FREQH   =  0.000000000000000E+000,
+ SN_ISFPAR_ZMIN%CLVAR   = sozisfmin                         ,
+ SN_ISFPAR_ZMIN%LN_TINT = F,
+ SN_ISFPAR_ZMIN%LN_CLIM = T,
+ SN_ISFPAR_ZMIN%CLFTYP  = yearly  ,
+ SN_ISFPAR_ZMIN%WNAME   =                                                                                                            
+                                                                                                                                     
+                  ,
+ SN_ISFPAR_ZMIN%VCOMP   =                                   ,
+ SN_ISFPAR_ZMIN%LNAME   =                                   ,
+ SN_ISFPAR_ZMAX%CLNAME  = isfmlt_par                                                                                                 
+                                                                                                                                     
+                  ,
+ SN_ISFPAR_ZMAX%FREQH   =  0.000000000000000E+000,
+ SN_ISFPAR_ZMAX%CLVAR   = sozisfmax                         ,
+ SN_ISFPAR_ZMAX%LN_TINT = F,
+ SN_ISFPAR_ZMAX%LN_CLIM = T,
+ SN_ISFPAR_ZMAX%CLFTYP  = yearly  ,
+ SN_ISFPAR_ZMAX%WNAME   =                                                                                                            
+                                                                                                                                     
+                  ,
+ SN_ISFPAR_ZMAX%VCOMP   =                                   ,
+ SN_ISFPAR_ZMAX%LNAME   =                                   ,
+ SN_ISFPAR_LEFF%CLNAME  = isfmlt_par                                                                                                 
+                                                                                                                                     
+                  ,
+ SN_ISFPAR_LEFF%FREQH   =  0.000000000000000E+000,
+ SN_ISFPAR_LEFF%CLVAR   = Leff                              ,
+ SN_ISFPAR_LEFF%LN_TINT = F,
+ SN_ISFPAR_LEFF%LN_CLIM = T,
+ SN_ISFPAR_LEFF%CLFTYP  = yearly  ,
+ SN_ISFPAR_LEFF%WNAME   =                                                                                                            
+                                                                                                                                     
+                  ,
+ SN_ISFPAR_LEFF%VCOMP   =                                   ,
+ SN_ISFPAR_LEFF%LNAME   =                                   ,
+ LN_ISFCPL       = F,
+ NN_DROWN        =          10,
+ LN_ISFCPL_CONS  = F,
+ LN_ISFDEBUG     = F,
+ CN_ISFLOAD      = uniform                                                                                                           
+                                                                                                                                     
+           ,
+ RN_ISFLOAD_T    =  -1.90000000000000     ,
+ RN_ISFLOAD_S    =   34.4000000000000     ,
+ CN_ISFDIR       = ./                                                                                                                
+                                                                                                                                     
+           ,
+ RN_ISFPAR_BG03_GT0      =  1.000000000000000E-004
+ /
+ &NAMSTO
+ LN_STO_LDF      = F,
+ RN_LDF_STD      =  0.100000000000000     ,
+ RN_LDF_TCOR     =   1440.00000000000     ,
+ LN_STO_HPG      = F,
+ RN_HPG_STD      =  0.100000000000000     ,
+ RN_HPG_TCOR     =   1440.00000000000     ,
+ LN_STO_PSTAR    = F,
+ RN_PSTAR_STD    =  0.100000000000000     ,
+ RN_PSTAR_TCOR   =   1440.00000000000     ,
+ NN_PSTAR_FLT    =           0,
+ NN_PSTAR_ORD    =           1,
+ LN_STO_TRD      = F,
+ RN_TRD_STD      =  0.100000000000000     ,
+ RN_TRD_TCOR     =   1440.00000000000     ,
+ LN_STO_EOS      = F,
+ NN_STO_EOS      =           1,
+ RN_EOS_STDXY    =   1.40000000000000     ,
+ RN_EOS_STDZ     =  0.700000000000000     ,
+ RN_EOS_TCOR     =   1440.00000000000     ,
+ NN_EOS_ORD      =           1,
+ NN_EOS_FLT      =           0,
+ RN_EOS_LIM      =   2.00000000000000     ,
+ LN_STO_TRC      = F,
+ NN_STO_TRC      =           1,
+ RN_TRC_STDXY    =   1.40000000000000     ,
+ RN_TRC_STDZ     =  0.700000000000000     ,
+ RN_TRC_TCOR     =   1440.00000000000     ,
+ NN_TRC_ORD      =           1,
+ NN_TRC_FLT      =           0,
+ RN_TRC_LIM      =   3.00000000000000     ,
+ LN_RSTSTO       = F,
+ LN_RSTSEED      = T,
+ CN_STORST_IN    = restart_sto                     ,
+ CN_STORST_OUT   = restart_sto                     
+ /
+ &NAM_DIADCT
+ LN_DIADCT       = F,
+ NN_DCT  =          15,
+ NN_DCTWRI       =          15,
+ NN_SECDEBUG     =         112
+ /
+ &NAMTRD
+ LN_DYN_TRD      = F,
+ LN_KE_TRD       = F,
+ LN_VOR_TRD      = F,
+ LN_DYN_MXL      = F,
+ LN_TRA_TRD      = F,
+ LN_PE_TRD       = F,
+ LN_GLO_TRD      = F,
+ LN_TRA_MXL      = F,
+ NN_TRD  =         365
+ /
+ &NAMOBS
+ LN_DIAOBS       = F,
+ NN_OBSGROUPS    =           0,
+ LN_GRID_GLOBAL  = T,
+ LN_GRID_SEARCH_LOOKUP   = F,
+ CN_GRIDSEARCHFILE       = grid_search                                 ,
+ RN_GRIDSEARCHRES        =  0.500000000000000     ,
+ DN_DOBSINI      =   10101.0000000000     ,
+ DN_DOBSEND      =   99991231.0000000     
+ /
