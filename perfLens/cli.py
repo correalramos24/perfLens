@@ -1,3 +1,4 @@
+from perfLens import parserManager
 from perfLens.args import parse_args
 from perfLens.parserManager import ParserManager
 
@@ -18,20 +19,30 @@ def main():
     sort_desc: bool           = app_args.desc
     save     : None|list[str] = app_args.save
 
-    if list_res:
-        MyLogger.success("Listing results for", mode)
-        exit(0)
+    pManager = ParserManager(mode)
+
+    # 1. EXPLORE BASED ON THE MODE SELECTED
     if explore:
-        MyLogger.info("Exploring folder(s) at", stringfy(inputs))
+        MyLogger.info("Exploring folder(s) @", stringfy(inputs))
+        _ = [pManager.explore(i) for i in inputs]
+        MyLogger.debug("Found", stringfy(pManager.list_paths()))
+    else:
+        pManager.add_inputs(inputs)
 
-        pass
+    # 2. LIST AVAILABLE RESULTS (BASED ON THE FILES FOUND)
+    if list_res:
+        MyLogger.info("Listing results found...", mode)
+        pManager.list_results()
+        MyLogger.success("Finishing perfLens...")
+        exit(0)
 
+    # 3. PARSE & SHOW/SAVE
+    if show or save: pManager.parse()
     if show:
-        pass
+        pManager.show_results(show)
 
     if save:
         pass
-
 
 if __name__ == "__main__":
     main()

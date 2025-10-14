@@ -1,7 +1,7 @@
 from .AbstractParser import AbstractParser
 from pathlib import Path
 
-class NEMO5(AbstractAnalyzer):
+class NEMO5(AbstractParser):
 
     def __init__(self, rundir: Path):
         super().__init__()
@@ -15,7 +15,7 @@ class NEMO5(AbstractAnalyzer):
 
     @classmethod
     def analyzerFiles(cls):
-        return super().analyzerFiles() + ["timing_step.nc","timing.output","env.log"]
+        return super().getParserFiles() + ["timing_step.nc","timing.output","env.log"]
 
     @classmethod
     def avail_results(cls):
