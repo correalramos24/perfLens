@@ -18,7 +18,7 @@ def parse_log_level(level_str):
 def parse_args():
     parser = argparse.ArgumentParser(
         description="perfLens - A gather performance information tool",
-        usage="paramirar.py mode input [input2] [inputN]... [other flags] ",
+        usage="perfLens mode input [input2] [inputN]... [other flags] ",
         epilog=f"VERSION: {VERSION}"
     )
 
