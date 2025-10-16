@@ -6,7 +6,7 @@ from utils.utils_bash import execute_command_get_ouput
 from pathlib import Path
 import argparse
 
-VERSION="alpha"
+VERSION="beta"
 
 
 def parse_log_level(level_str):
