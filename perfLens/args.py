@@ -6,7 +6,7 @@ from utils.utils_bash import execute_command_get_ouput
 from pathlib import Path
 import argparse
 
-VERSION="Alpha"
+VERSION="alpha"
 
 
 def parse_log_level(level_str):
@@ -51,7 +51,7 @@ def parse_args():
         print("perfLens installed at", pLens_home)
         br = execute_command_get_ouput("git rev-parse --abbrev-ref HEAD", pLens_home)
         cm = execute_command_get_ouput("git rev-parse --short HEAD", pLens_home)
-        #tg = execute_command_get_ouput("git describe --tags --abbrev=0", pLens_home)
+        tg = execute_command_get_ouput("git describe --tags --abbrev=0", pLens_home)
         print(f"VERSION: {VERSION} => BRANCH: {br} @ COMMIT: {cm}")
     if parsed.version:
         print(f"VERSION: {VERSION}")
