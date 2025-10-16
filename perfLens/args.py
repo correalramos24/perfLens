@@ -52,7 +52,7 @@ def parse_args():
         br = execute_command_get_ouput("git rev-parse --abbrev-ref HEAD", pLens_home)
         cm = execute_command_get_ouput("git rev-parse --short HEAD", pLens_home)
         tg = execute_command_get_ouput("git describe --tags --abbrev=0", pLens_home)
-        print(f"VERSION: {VERSION} => BRANCH: {br} @ COMMIT: {cm}")
+        print(f"VERSION: {VERSION}=> BRANCH: {br} @ COMMIT: {cm}, TAG: {tg}")
     if parsed.version:
         print(f"VERSION: {VERSION}")
     if parsed.version or parsed.dev_version:
