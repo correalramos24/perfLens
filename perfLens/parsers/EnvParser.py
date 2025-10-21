@@ -15,7 +15,7 @@ class EnvParser(AbstractParser):
         self.env_file = Path(self.rundir, self.env_file_name)
 
     @classmethod
-    def getParserFiles(cls):
+    def getParserFiles(cls) -> list[str]:
         return super().getParserFiles() + [cls.env_file_name]
 
     def avail_results(self) -> list[str]:
@@ -24,7 +24,12 @@ class EnvParser(AbstractParser):
         return ret
 
     def parse(self) -> None:
-        nodes, mpi, omp, tasks = get_slurm_env(self.env_file)
-        self._add_result("slurm_data",{"rundir": self.rundir, "nodes": nodes,
-            "mpi":mpi,"omp": omp,"tasks": tasks,
-        })
+        d = self.get_env_data(self.env_file)
+        self._add_result("slurm_data",{"rundir": self.rundir} | d)
+
+    @staticmethod
+    def get_env_data(env_file) -> dict:
+        nodes, mpi, omp, tasks = get_slurm_env(env_file)
+        return {"nodes":nodes, "mpi_x_node":mpi, 
+                "omp_x_mpi":omp, "tasks":tasks}
+        

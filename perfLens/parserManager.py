@@ -11,8 +11,6 @@ import pandas as pd
 from pathlib import Path
 from typing import Type, Dict
 
-
-
 _ANALYZER_REGISTRY: dict[str, Type[AbstractParser]] = {}
 
 def register_parser(cls: Type[AbstractParser]):
@@ -33,7 +31,6 @@ class ParserManager(metaAbstractClass):
         if not mode in _ANALYZER_REGISTRY:
             raise Exception(f"Invalid parser {mode}")
         self.mode_class = _ANALYZER_REGISTRY[self.mode]
-        #self.parsers : dict[str, AbstractParser] = dict()
         self.parsers : list[AbstractParser] = []
         self.agg_results :dict[str, pd.DataFrame] = dict()
         self._info("Using mode", mode)
@@ -46,7 +43,6 @@ class ParserManager(metaAbstractClass):
         for f in self.mode_class.getParserFiles():
              self._dbg("Searching for", f)
              self.add_inputs(explore_fldr(Path(root_rundir), f))
-
 
     def list_results(self) -> list[str]:
         for parser in self.parsers:
