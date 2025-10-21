@@ -17,6 +17,10 @@ class AbstractParser(metaAbstractClass):
         """Files required by the parser"""
         return []
 
+    @classmethod
+    def getParserWildcards(cls) -> list[str]:
+        return []
+
     def avail_results(self) -> list[str]:
         """Check which results are available at the given rundir"""
         return []
@@ -33,7 +37,12 @@ class AbstractParser(metaAbstractClass):
         return self.results[k]
 
 
-    def _add_result(self, result_key:str, data: dict):
+    def _add_result(self, result_key:str, data: dict|pd.DataFrame):
         if result_key in self.results:
             self._warn("Updating results for", result_key)
-        self.results[result_key] = pd.DataFrame([data])
+        if isinstance(data, pd.DataFrame):
+            self.results[result_key] = data
+        elif isinstance(data, dict):
+            self.results[result_key] = pd.DataFrame([data])
+        else:
+            raise TypeError("Invalid type @ _add_result")

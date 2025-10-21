@@ -2,7 +2,7 @@ from pandas.core.internals.array_manager import itertools
 from perfLens.parsers.AbstractParser import AbstractParser
 
 from utils.utils_controllers import metaAbstractClass
-from utils.utils_files import explore_fldr
+from utils.utils_files import explore_fldr, explore_fldr_wildcard
 from utils.utils_py import pathfy
 from utils.utils_py import stringfy
 
@@ -43,6 +43,11 @@ class ParserManager(metaAbstractClass):
         for f in self.mode_class.getParserFiles():
              self._dbg("Searching for", f)
              self.add_inputs(explore_fldr(Path(root_rundir), f))
+
+        for f in self.mode_class.getParserWildcards():
+            self._dbg("Searching for", f)
+            self.add_inputs(explore_fldr_wildcard(Path(root_rundir), f))
+
 
     def list_results(self) -> list[str]:
         for parser in self.parsers:
