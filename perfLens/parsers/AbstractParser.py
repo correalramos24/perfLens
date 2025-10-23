@@ -2,6 +2,7 @@
 from utils.utils_controllers import metaAbstractClass
 from pathlib import Path
 import pandas as pd
+from abc import abstractmethod
 
 class AbstractParser(metaAbstractClass):
 
@@ -16,13 +17,17 @@ class AbstractParser(metaAbstractClass):
         """Files required by the parser"""
         return []
 
+    @classmethod
+    def getParserWildcards(cls) -> list[str]:
+        return []
+
     def avail_results(self) -> list[str]:
         """Check which results are available at the given rundir"""
         return []
 
+    @abstractmethod
     def parse(self) -> None:
         """Compute the results of the rundir"""
-        pass
 
     def get_results(self, k) -> pd.DataFrame:
         """Retrive the results for the given key"""
@@ -32,7 +37,12 @@ class AbstractParser(metaAbstractClass):
         return self.results[k]
 
 
-    def _add_result(self, result_key:str, data: dict):
+    def _add_result(self, result_key:str, data: dict|pd.DataFrame):
         if result_key in self.results:
             self._warn("Updating results for", result_key)
-        self.results[result_key] = pd.DataFrame([data])
+        if isinstance(data, pd.DataFrame):
+            self.results[result_key] = data
+        elif isinstance(data, dict):
+            self.results[result_key] = pd.DataFrame([data])
+        else:
+            raise TypeError("Invalid type @ _add_result")
