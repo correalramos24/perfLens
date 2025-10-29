@@ -1,12 +1,16 @@
+import numpy as np
 
 from perfLens.parsers.AbstractParser import AbstractParser
 from perfLens.parserManager import register_parser
-
+from utils.utils_py import to_int_list
 import pandas as pd
 from pathlib import Path
 
 @register_parser
 class MemParser(AbstractParser):
+
+    MEM_INFO = ["timing", "total", "used","free", "shared", "buff/cache", "available"]
+    SWP_INFO = ["total_swap", "used_swap", "free_swap"]
     def __init__(self, rundir: Path) -> None:
         super().__init__(rundir)
         self.mem_files = list(rundir.glob("*.mem"))
@@ -30,29 +34,27 @@ class MemParser(AbstractParser):
             self._add_result("mem-data", self.__join_mem_data())
 
     @staticmethod
-    def get_mem_data(fPath: Path, samp_time: int = 1, swap: bool = False,
+    def get_mem_data(fpath: Path, samp_time: int = 1, swap: bool = False,
                      scale_factor: int = 1024 * 1024) -> pd.DataFrame:
         data, timing = [], 0
-        with open(fPath, mode='r') as mem_file:
+        with open(fpath, mode='r') as mem_file:
             for line in mem_file.readlines():
                 if "Mem: " in line:
-                    data.append([timing] + line.split()[1:])
+                    data.append([timing] + to_int_list(line.split()[1:]))
                     timing += samp_time
                 if swap and "Swap: " in line:
-                    data[-1].extend(line.split()[1:])
+                    data[-1].extend(to_int_list(line.split()[1:]))
 
-        COLS_MEM = ["timing", "total", "used", "free", "shared", "buff/cache", "available"]
-        COLS_SWP = ["total_swap", "used_swap", "free_swap"]
-        cols = COLS_MEM if not swap else COLS_MEM + COLS_SWP
-        df = pd.DataFrame(columns=cols, data=data).astype(int)
-        df["host"] = fPath.name.replace(".mem", "")
+        cols = MemParser.MEM_INFO if not swap else MemParser.MEM_INFO + MemParser.SWP_INFO
+        df = pd.DataFrame(columns=cols, data=data)
+        df["host"] = fpath.name.replace(".mem", "")
 
-        df["used_perc"] = df["used"] / df["total"]
-        if swap: df["used_swap_perc"] = df["used_swap"] / df["total_swap"]
-
-        not_timing = df.columns.difference(["timing", "host"])
+        not_timing = df.columns.difference(["timing", "host", "used_perc"])
         df[not_timing] = df[not_timing].apply(lambda x: x / scale_factor)
         df[not_timing] = df[not_timing].round(2)
+
+        df["used_perc"] = (df["used"] / df["total"]) * 100
+        if swap: df["used_swap_perc"] = (df["used_swap"] / df["total_swap"]) * 100
 
         return df
 

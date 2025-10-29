@@ -35,7 +35,7 @@ class ParserManager(metaAbstractClass):
         self.agg_results :dict[str, pd.DataFrame] = dict()
         self._info("Using mode", mode)
 
-    def add_input(self, rundir: str):
+    def add_input(self, rundir: str|Path):
         self.parsers.append(self.mode_class(pathfy(rundir)))
 
     def add_inputs(self, rundirs: list[str]):
@@ -51,15 +51,14 @@ class ParserManager(metaAbstractClass):
             self._dbg("Searching for", f)
             self.add_inputs(explore_fldr_wildcard(Path(root_rundir), f))
 
-
-    def list_results(self) -> list[str]:
+    def list_results(self) -> None:
         for parser in self.parsers:
             print(parser.get_rundir(), "->:", stringfy(parser.avail_results()))
 
     def parse(self) -> None:
         _ = [p.parse() for p in self.parsers]
 
-    def show_results(self, keys: str|list[str]):
+    def show_results(self, keys: str|list[str]) -> None:
         if isinstance(keys, str): keys = [keys]
         for k in keys:
             print("Showing results for", k, "...")
