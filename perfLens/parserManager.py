@@ -1,4 +1,4 @@
-from pandas.core.internals.array_manager import itertools
+
 from perfLens.parsers.AbstractParser import AbstractParser
 
 from utils.utils_controllers import metaAbstractClass

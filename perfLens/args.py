@@ -36,7 +36,7 @@ def parse_args():
 
     parser.add_argument('--save', default=None,help="Save the results to a csv file")
 
-    parser.add_argument('--version', help="Print paramirar version", action='store_true')
+    parser.add_argument('--version', help="Print perfLens version", action='store_true')
     parser.add_argument('--dev-version', help="Print perfLens info", action='store_true')
 
     parser.add_argument('--silent', help="Disable info printing", action='store_true')
@@ -47,16 +47,16 @@ def parse_args():
     parsed = parser.parse_args()
 
     if parsed.dev_version:
-        pLens_home = Path(__file__).parent
-        print("perfLens installed at", pLens_home)
-        br = execute_command_get_ouput("git rev-parse --abbrev-ref HEAD", pLens_home)
-        cm = execute_command_get_ouput("git rev-parse --short HEAD", pLens_home)
-        tg = execute_command_get_ouput("git describe --tags --abbrev=0", pLens_home)
+        perflens_home = Path(__file__).parent
+        print("perfLens installed at", perflens_home)
+        br = execute_command_get_ouput("git rev-parse --abbrev-ref HEAD", perflens_home)
+        cm = execute_command_get_ouput("git rev-parse --short HEAD", perflens_home)
+        tg = execute_command_get_ouput("git describe --tags --abbrev=0", perflens_home)
         print(f"VERSION: {VERSION}=> BRANCH: {br} @ COMMIT: {cm}, TAG: {tg}")
     if parsed.version:
         print(f"VERSION: {VERSION}")
     if parsed.version or parsed.dev_version:
-        exit(0);
+        exit(0)
 
     if not parsed.mode:
         MyLogger.error("mode is a required argument!")
