@@ -36,7 +36,7 @@ class PidstatParser(AbstractParser):
     def get_pidstat_data_cpu(fPath: Path) -> pd.DataFrame:
         data = PidstatParser.__gather_pidstat_data(fPath)
         df = pd.DataFrame(data, columns=list(PidstatParser.CPU_INFO.keys()))
-        df = df.astype(PidstatParser.CPU_INFO)
+        df.astype(PidstatParser.CPU_INFO)
         return df
 
     @staticmethod
