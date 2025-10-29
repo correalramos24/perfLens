@@ -35,6 +35,9 @@ class ParserManager(metaAbstractClass):
         self.agg_results :dict[str, pd.DataFrame] = dict()
         self._info("Using mode", mode)
 
+    def add_input(self, rundir: str):
+        self.parsers.append(self.mode_class(pathfy(rundir)))
+
     def add_inputs(self, rundirs: list[str]):
         self.parsers += [self.mode_class(pathfy(r)) for r in rundirs]
 
@@ -57,6 +60,7 @@ class ParserManager(metaAbstractClass):
         _ = [p.parse() for p in self.parsers]
 
     def show_results(self, keys: str|list[str]):
+        if isinstance(keys, str): keys = [keys]
         for k in keys:
             print("Showing results for", k, "...")
             dfs = [p.get_results(k) for p in self.parsers]
@@ -65,6 +69,16 @@ class ParserManager(metaAbstractClass):
                 continue
             self.agg_results[k] = pd.concat(dfs, ignore_index=True)
             print(self.agg_results[k])
+
+    def get_results(self, key: str) -> pd.DataFrame:
+        if key in self.agg_results:
+            return self.agg_results[key]
+        else:
+            dfs = [p.get_results(key) for p in self.parsers]
+            if len(dfs) == 0 or all(x is None for x in dfs):
+                self._warn("Unable to find any result for", key)
+            return pd.concat(dfs, ignore_index=True)
+
 
     def list_paths(self) -> list[str]:
         return [p.get_rundir() for p in self.parsers]

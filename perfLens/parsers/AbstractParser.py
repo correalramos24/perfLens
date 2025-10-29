@@ -38,6 +38,7 @@ class AbstractParser(metaAbstractClass):
 
 
     def _add_result(self, result_key:str, data: dict|pd.DataFrame):
+        self._dbg("Adding result with key", result_key)
         if result_key in self.results:
             self._warn("Updating results for", result_key)
         if isinstance(data, pd.DataFrame):
