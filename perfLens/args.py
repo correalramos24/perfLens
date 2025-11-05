@@ -32,7 +32,7 @@ def parse_args():
     parser.add_argument('--show', nargs="*",help="Print the results to the CMD line")
     parser.add_argument('--cols', help="Show only a certain columns", default=None, nargs="*")
     parser.add_argument('--sort', nargs="*", help="Sort the records of show")
-    parser.add_argument('--desc', help="Sort descending", action="store_false", default=True)
+    parser.add_argument('--asc', help="Sort ascending", action="store_true", default=True)
 
     parser.add_argument('--save', default=None,help="Save the results to a csv file")
 

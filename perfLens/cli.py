@@ -15,7 +15,7 @@ def main():
     show     : None|list[str] = app_args.show
     cols     : None|list[str] = app_args.cols
     sort_res : None|list[str] = app_args.sort
-    sort_desc: bool           = app_args.desc
+    sort_asc : bool           = app_args.asc
     save     : None|list[str] = app_args.save
 
     p_manager = ParserManager(mode)
@@ -39,7 +39,7 @@ def main():
     if show or save:
         p_manager.parse()
     if show:
-        p_manager.show_results(show)
+        p_manager.show_results(show, cols, sort_res, sort_asc)
 
     if save:
         pass

@@ -58,7 +58,8 @@ class ParserManager(metaAbstractClass):
     def parse(self) -> None:
         _ = [p.parse() for p in self.parsers]
 
-    def show_results(self, keys: str|list[str]) -> None:
+    def show_results(self, keys: str|list[str], cols : list[str]|None, 
+                     sort : list[str]|None, asc: bool)                 -> None:
         if isinstance(keys, str): keys = [keys]
         for k in keys:
             print("Showing results for", k, "...")
@@ -66,8 +67,21 @@ class ParserManager(metaAbstractClass):
             if len(dfs) == 0 or all(x is None for x in dfs):
                 self._warn("Unable to find any result for", k)
                 continue
-            self.agg_results[k] = pd.concat(dfs, ignore_index=True)
-            print(self.agg_results[k])
+            df = pd.concat(dfs, ignore_index=True)
+            print("available columns:", stringfy(list(df.columns)))
+            
+            if cols:
+                try:
+                    print("Selecting columns:", stringfy(cols))
+                    df = df[cols]
+                except Exception as e:
+                    print("Unable to selec columns, check names:", 
+                          stringfy(cols))
+            if sort:
+                df.sort_values(sort, inplace=True, ascending=asc)
+            
+            self.agg_results[k] = df
+            print(df)
 
     def get_results(self, key: str) -> pd.DataFrame:
         if key in self.agg_results:

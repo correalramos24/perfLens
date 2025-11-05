@@ -61,12 +61,13 @@ class NEMO5(EnvParser):
         nm_data  = d_jpnij | d_rl | d_tile | d_ss
         
         # DERIVED DATA:
-        ts_x_s   = {"steps_per_sec" : None}
-        sim_days = None
-        sdpd     = {"sdpd": None}
-        sdpd_iter= {"sdpd_iter": None}
+        #ts_x_s   = {"steps_per_sec" : None}
+        #sim_days = None
+        #sdpd     = {"sdpd": None}
+        #sdpd_iter= {"sdpd_iter": None}
         
-        exec_stats = d_ts | d_perf | d_tile | ts_x_s | sdpd | sdpd_iter
+        #exec_stats = d_slurm | d_ts | d_perf | d_tile | ts_x_s | sdpd | sdpd_iter
+        exec_stats = d_slurm | d_ts | d_perf | d_tile 
         all_data = d_slurm | exec_stats | nm_data
         
         self._add_result("exec_stats", {"rundir": self.rundir} | exec_stats)
