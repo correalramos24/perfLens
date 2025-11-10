@@ -8,9 +8,9 @@ from pathlib import Path
 
 @register_parser
 class MemParser(AbstractParser):
-
-    MEM_INFO = ["timing", "total", "used","free", "shared", "buff/cache", "available"]
+    MEM_INFO = ["timing", "total", "used", "free", "shared", "buff/cache", "available"]
     SWP_INFO = ["total_swap", "used_swap", "free_swap"]
+
     def __init__(self, rundir: Path) -> None:
         super().__init__(rundir)
         self.mem_files = list(rundir.glob("*.mem"))
