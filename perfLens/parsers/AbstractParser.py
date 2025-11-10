@@ -20,6 +20,7 @@ class AbstractParser(metaAbstractClass):
 
     @classmethod
     def parser_wildcards(cls) -> list[str]:
+        """Wildcards required by the parser"""
         return []
 
     def avail_results(self) -> list[str]:
@@ -37,7 +38,10 @@ class AbstractParser(metaAbstractClass):
             return None
         return self.results[k]
 
+    # =========================INTERNAL METHOD=======================================
+
     def _add_result(self, result_key:str, data: dict|pd.DataFrame):
+        """Add a results (dict or pd.Dataframe into the results)."""
         self._dbg("Adding result with key", result_key)
         if result_key in self.results:
             self._warn("Updating results for", result_key)
