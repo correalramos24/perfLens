@@ -43,11 +43,11 @@ class ParserManager(metaAbstractClass):
 
     def explore(self, root_rundir: Path|str):
         """Append data from root_rundirs"""
-        for f in self.mode_class.getParserFiles():
+        for f in self.mode_class.parser_files():
              self._dbg("Searching for", f)
              self.add_inputs(explore_fldr(Path(root_rundir), f))
 
-        for f in self.mode_class.getParserWildcards():
+        for f in self.mode_class.parser_wildcards():
             self._dbg("Searching for", f)
             self.add_inputs(explore_fldr_wildcard(Path(root_rundir), f))
 

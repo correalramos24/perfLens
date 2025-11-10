@@ -17,8 +17,8 @@ class MemParser(AbstractParser):
         self.mem_files_names = [f.name for f in self.mem_files]
 
     @classmethod
-    def getParserWildcards(cls) -> list[str]:
-        return super().getParserWildcards() + ["*.mem"]
+    def parser_wildcards(cls) -> list[str]:
+        return super().parser_wildcards() + ["*.mem"]
 
     def avail_results(self) -> list[str]:
         ret = self.mem_files_names.copy()

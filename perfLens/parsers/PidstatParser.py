@@ -18,8 +18,8 @@ class PidstatParser(AbstractParser):
         super().__init__(rundir)
 
     @classmethod
-    def getParserWildcards(cls) -> list[str]:
-        return super().getParserWildcards() + [f"*.{cls.LOG_EXTENSION}"]
+    def parser_wildcards(cls) -> list[str]:
+        return super().parser_wildcards() + [f"*.{cls.LOG_EXTENSION}"]
 
     def avail_results(self) -> list[str]:
         ret = super().avail_results()

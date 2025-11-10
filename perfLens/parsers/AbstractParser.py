@@ -1,3 +1,4 @@
+from pandas import DataFrame
 
 from utils.utils_controllers import metaAbstractClass
 from pathlib import Path
@@ -13,12 +14,12 @@ class AbstractParser(metaAbstractClass):
     def get_rundir(self): return self.rundir
 
     @classmethod
-    def getParserFiles(cls) -> list[str]:
+    def parser_files(cls) -> list[str]:
         """Files required by the parser"""
         return []
 
     @classmethod
-    def getParserWildcards(cls) -> list[str]:
+    def parser_wildcards(cls) -> list[str]:
         return []
 
     def avail_results(self) -> list[str]:
@@ -29,13 +30,12 @@ class AbstractParser(metaAbstractClass):
     def parse(self) -> None:
         """Compute the results of the rundir"""
 
-    def get_results(self, k) -> pd.DataFrame:
+    def get_results(self, k) -> DataFrame | None:
         """Retrive the results for the given key"""
         if k not in self.results:
             self._err("Unable to find key", k, "@", self.rundir)
             return None
         return self.results[k]
-
 
     def _add_result(self, result_key:str, data: dict|pd.DataFrame):
         self._dbg("Adding result with key", result_key)
