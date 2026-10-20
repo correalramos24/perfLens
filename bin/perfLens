@@ -1,4 +1,12 @@
 #!/bin/bash
+# Run perfLens from this clone, using the project's .venv if present
+# (see README), otherwise the current python3.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$SCRIPT_DIR/.."
 
-exec uv run --quiet --project "$SCRIPT_DIR/.." perfLens "$@"
+if [ -x "$PROJECT_DIR/.venv/bin/python" ]; then
+    exec "$PROJECT_DIR/.venv/bin/python" -m perfLens.cli "$@"
+else
+    export PYTHONPATH="$PROJECT_DIR${PYTHONPATH:+:$PYTHONPATH}"
+    exec python3 -m perfLens.cli "$@"
+fi

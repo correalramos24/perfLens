@@ -10,37 +10,35 @@ The user can *list*, *show* and/or *save* the results.
 
 ## Installation
 
-perfLens requires Python >= 3.10 and uses [uv](https://docs.astral.sh/uv/)
-to manage its dependencies (pandas, netCDF4, f90nml and
-[py-utils](https://github.com/correalramos24/py_utils)).
-
-Install uv if you don't have it yet:
-````bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-````
-
-Then pick one of the following options.
+perfLens requires Python >= 3.10, pip and git. Its dependencies are
+pandas and [py-utils](https://github.com/correalramos24/py_utils), which
+pip installs directly from GitHub.
 
 ### Option A: global command (recommended for users)
-Install `perfLens` as a standalone tool, available from any folder:
+Install `perfLens` into a dedicated virtual environment and expose the
+command:
 ````bash
-uv tool install git+https://github.com/correalramos24/perfLens.git@develop
-# or, from a local clone:
-uv tool install .
+python3 -m venv ~/.venvs/perfLens
+~/.venvs/perfLens/bin/pip install --upgrade pip
+~/.venvs/perfLens/bin/pip install git+https://github.com/correalramos24/perfLens.git@overhaul
+ln -s ~/.venvs/perfLens/bin/perfLens ~/.local/bin/perfLens   # any folder in your PATH
 ````
-Upgrade it later with `uv tool upgrade perflens`, or remove it with
-`uv tool uninstall perflens`.
+Upgrade it later by re-running the `pip install` command with `--upgrade`.
 
 ### Option B: from a clone (recommended for development)
 ````bash
 git clone https://github.com/correalramos24/perfLens.git
 cd perfLens
-uv sync                  # create .venv and install all dependencies
-uv run perfLens --help   # run the CLI
-uv run pytest            # run the tests
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -e ".[test]"   # editable install + test dependencies
+perfLens --help            # run the CLI
+python -m pytest           # run the tests
 ````
 Optionally, add the `bin` folder to your `PATH` to call `perfLens`
-from anywhere: it is a thin wrapper around `uv run` that uses this clone.
+from anywhere without activating the virtual environment: it runs this
+clone with `.venv/bin/python` (or `python3` if there is no `.venv`).
 
 ## Usage
 
@@ -48,8 +46,8 @@ from anywhere: it is a thin wrapper around `uv run` that uses this clone.
 perfLens mode input [input2] [inputN]... [flags]
 ````
 
-* `mode`: the parser to use: `envparser`, `memparser`, `pidstatparser`,
-  `nemo` or `nemo5` (see `perfLens --help`).
+* `mode`: the parser to use: `envparser`, `memparser` or `pidstatparser`
+  (see `perfLens --help`).
 * `input`: one or more rundirs. With `--explore`, the inputs are root folders
   that are searched recursively for rundirs containing files that the selected
   parser understands.
@@ -80,12 +78,7 @@ perfLens memparser inputs/free --show mem-data --cols host total used used_perc 
 
 # CPU usage from pidstat logs (*.pstat)
 perfLens pidstatparser inputs/pidstat --show samp.pstat
-
-# Results available for a NEMO5 rundir
-perfLens nemo5 inputs/nemo5 --list
 ````
-When running from a clone without installing, prefix the commands
-with `uv run` (e.g. `uv run perfLens envparser inputs --explore --list`).
 
 
 ## Extend functionalities
