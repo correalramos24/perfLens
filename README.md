@@ -10,6 +10,7 @@ that can be printed, saved to CSV or used from Python.
 | `env` | `env.log` | `slurm` | SLURM setup of the job: nodes, mpi (tasks per node), omp (cpus per task), tasks |
 | `mem` | `*.mem` | `mem` | Memory usage sampled with `free` (GiB and % used, one row per sample and host) |
 | `pidstat` | `*.pstat` | `cpu` | Per-process CPU usage from `pidstat` |
+| `jsonl` | `*.jsonl`, `*.ndjson` | `records` | One row per JSON object (one object per line); nested objects become dotted columns (`mem.rss_mb`) |
 
 ## Installation
 
@@ -79,6 +80,9 @@ perfLens mem inputs/free --cols host time used used_perc --sort used_perc --desc
 
 # Processes with the highest CPU usage
 perfLens pidstat inputs/pidstat --cols time PID %CPU Command --sort %CPU --desc
+
+# Steps with the highest memory peak, from JSON Lines logs (one per rank)
+perfLens jsonl inputs/jsonl --cols file step elapsed_s mem.peak_mb --sort mem.peak_mb --desc
 ````
 
 ### From Python

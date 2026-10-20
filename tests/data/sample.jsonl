@@ -1,0 +1,7 @@
+{"step": 1, "elapsed_s": 0.5, "mem": {"rss_mb": 800.0}, "tags": ["a", "b"]}
+
+{"step": 2, "elapsed_s": 0.7, "io": true}
+not json
+[1, 2, 3]
+{"step": 3, "elapsed_s": 0.6, "mem": {"rss_mb": 810.5}}
+{"step": 4, "elapsed_s":

@@ -1,0 +1,4 @@
+{"step": 1, "rank": 1, "elapsed_s": 0.520, "mem": {"rss_mb": 798.2, "peak_mb": 801.3}}
+{"step": 2, "rank": 1, "elapsed_s": 0.502, "mem": {"rss_mb": 799.0, "peak_mb": 801.3}}
+{"step": 3, "rank": 1, "elapsed_s": 0.744, "mem": {"rss_mb": 887.5, "peak_mb": 887.5}, "io": true}
+{"step": 4, "rank": 1, "elapsed_s": 0.509, "mem": {"rss_mb": 800.1, "peak_mb": 887.5}}

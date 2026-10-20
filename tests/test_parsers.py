@@ -2,8 +2,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import pandas as pd
+
 from perfLens.parsers import PARSERS
 from perfLens.parsers.env import EnvParser
+from perfLens.parsers.jsonl import JsonlParser
 from perfLens.parsers.mem import MemParser
 from perfLens.parsers.pidstat import PidstatParser
 
@@ -71,6 +74,34 @@ class TestPidstatParser(unittest.TestCase):
             self.assertEqual(df.iloc[0]["Command"], "Web Content")
 
 
+class TestJsonlParser(unittest.TestCase):
+    def test_read_jsonl(self):
+        with self.assertLogs("perfLens", level="WARNING") as logs:
+            df = JsonlParser.read_jsonl(DATA / "sample.jsonl")
+        self.assertEqual(len(logs.output), 3)  # not json, not an object, truncated
+        self.assertEqual(df.columns[0], "file")
+        self.assertEqual(set(df.columns),
+                         {"file", "step", "elapsed_s", "mem.rss_mb", "tags", "io"})
+        self.assertEqual(df["step"].tolist(), [1, 2, 3])
+        self.assertEqual(df["file"].unique().tolist(), ["sample.jsonl"])
+        self.assertAlmostEqual(df["mem.rss_mb"].iloc[2], 810.5)
+        self.assertTrue(pd.isna(df["mem.rss_mb"].iloc[1]))  # missing key
+        self.assertEqual(df["tags"].iloc[0], ["a", "b"])
+
+    def test_empty_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            empty = Path(tmp) / "empty.jsonl"
+            empty.write_text("\n")
+            df = JsonlParser.read_jsonl(empty)
+            self.assertEqual(len(df), 0)
+            self.assertEqual(list(df.columns), ["file"])
+
+    def test_parse(self):
+        parser = JsonlParser(DATA)
+        self.assertEqual(parser.available(), ["records"])
+        self.assertEqual(len(parser.parse()["records"]), 3)
+
+
 class TestRegistry(unittest.TestCase):
     def test_modes(self):
-        self.assertEqual(sorted(PARSERS), ["env", "mem", "pidstat"])
+        self.assertEqual(sorted(PARSERS), ["env", "jsonl", "mem", "pidstat"])
