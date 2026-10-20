@@ -1,0 +1,36 @@
+[project]
+name = "perflens"
+version = "0.1.0"
+description = "Gather performance metrics from rundirs."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Victor Correal" }]
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "netCDF4>=1.6",
+    "f90nml>=1.4",
+    "py-utils",
+]
+
+[project.scripts]
+perfLens = "perfLens.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "perfLens"
+module-root = ""
+
+[tool.uv.sources]
+py-utils = { git = "https://github.com/correalramos24/py_utils.git", branch = "main" }
+
+[tool.pytest.ini_options]
+testpaths = ["perfLensTests"]

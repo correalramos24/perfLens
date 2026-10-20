@@ -2,9 +2,10 @@
 from perfLens.parsers.AbstractParser import AbstractParser
 from perfLens.parserManager import register_parser
 
-from utils.utils_files import *
-from utils.utils_slurm import slurm_env
+from py_utils.utils_files import file_exists
+from py_utils.slurm import SlurmDirectives
 from pathlib import Path
+import re
 
 @register_parser
 class EnvParser(AbstractParser):
@@ -29,5 +30,13 @@ class EnvParser(AbstractParser):
 
     @staticmethod
     def _parse_env_data(env_file : Path) -> dict:
-        return slurm_env(env_file)._asdict()
+        dirs = SlurmDirectives.from_env_file(env_file)
+        return {k: EnvParser._leading_int(getattr(dirs, k))
+                for k in ("nodes", "mpi", "omp", "tasks")}
+
+    @staticmethod
+    def _leading_int(value: str | None) -> int:
+        """Parse SLURM values like '110(x8)' -> 110, missing -> -1"""
+        m = re.match(r"\d+", value) if value else None
+        return int(m.group()) if m else -1
         

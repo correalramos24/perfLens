@@ -1,8 +1,7 @@
-import numpy as np
 
 from perfLens.parsers.AbstractParser import AbstractParser
 from perfLens.parserManager import register_parser
-from utils.utils_py import to_int_list
+from py_utils.utils_py import to_int_list
 import pandas as pd
 from pathlib import Path
 

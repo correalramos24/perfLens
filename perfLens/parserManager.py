@@ -1,10 +1,9 @@
 
 from perfLens.parsers.AbstractParser import AbstractParser
 
-from utils.utils_controllers import metaAbstractClass
-from utils.utils_files import explore_fldr, explore_fldr_wildcard
-from utils.utils_py import pathfy
-from utils.utils_py import stringfy
+from py_utils.meta import MetaAbstractClass
+from py_utils.utils_files import explore_fldr, explore_fldr_wildcard
+from py_utils.utils_py import pathfy, stringfy
 
 import pandas as pd
 
@@ -25,7 +24,7 @@ def register_parser(cls: Type[AbstractParser]):
     return cls
 
 
-class ParserManager(metaAbstractClass):
+class ParserManager(MetaAbstractClass):
     def __init__(self, mode : str) -> None:
         self.mode = mode
         if not mode in _ANALYZER_REGISTRY:

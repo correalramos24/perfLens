@@ -1,11 +1,11 @@
 from pandas import DataFrame
 
-from utils.utils_controllers import metaAbstractClass
+from py_utils.meta import MetaAbstractClass
 from pathlib import Path
 import pandas as pd
 from abc import abstractmethod
 
-class AbstractParser(metaAbstractClass):
+class AbstractParser(MetaAbstractClass):
 
     def __init__(self, rundir: Path) -> None:
         self.results: dict[str, pd.DataFrame] = {}

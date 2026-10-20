@@ -1,7 +1,7 @@
 from perfLens.parserManager import ParserManager
 
-from utils.utils_print import MyLogger, LoggerLevels
-from utils.utils_bash import execute_command_get_ouput
+from py_utils.logger import MyLogger, LoggerLevels
+from py_utils.bash_cmd import BashCmd
 
 from pathlib import Path
 import argparse
@@ -49,9 +49,9 @@ def parse_args():
     if parsed.dev_version:
         perflens_home = Path(__file__).parent
         print("perfLens installed at", perflens_home)
-        br = execute_command_get_ouput("git rev-parse --abbrev-ref HEAD", perflens_home)
-        cm = execute_command_get_ouput("git rev-parse --short HEAD", perflens_home)
-        tg = execute_command_get_ouput("git describe --tags --abbrev=0", perflens_home)
+        br = BashCmd(perflens_home).run("git rev-parse --abbrev-ref HEAD").output()
+        cm = BashCmd(perflens_home).run("git rev-parse --short HEAD").output()
+        tg = BashCmd(perflens_home).run("git describe --tags --abbrev=0").output()
         print(f"VERSION: {VERSION}=> BRANCH: {br} @ COMMIT: {cm}, TAG: {tg}")
     if parsed.version:
         print(f"VERSION: {VERSION}")

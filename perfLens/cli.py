@@ -1,8 +1,8 @@
 
 from perfLens.args import parse_args
 from perfLens.parserManager import ParserManager
-from utils.utils_print import MyLogger
-from utils.utils_py import stringfy
+from py_utils.logger import MyLogger
+from py_utils.utils_py import stringfy
 
 def main():
     app_args = parse_args()

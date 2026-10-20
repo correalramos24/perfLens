@@ -2,7 +2,7 @@
 from perfLens.parsers.NEMO import Nemo
 from perfLens.parserManager import register_parser
 
-from utils.utils_files import *
+from py_utils.utils_files import file_exists
 
 import netCDF4 as nc
 
@@ -42,33 +42,26 @@ class NEMO5(Nemo):
     def parse(self) -> None:
         super().parse()
 
-        d_slurm  = self.env_data(self.env_file)
+        d_slurm  = self._parse_env_data(self.env_file)
         # PERF DATA:
-        d_ts     = self.exec_timesteps(self.timestep_file)
-        d_elap_t = self.get_execution_time(self.timing_file)
+        d_ts     = {"ts" : self.exec_timesteps(self.timestep_file)}
+        d_elap_t = {"exec_time" : self.exec_time(self.timing_file)}
         d_elap_ts= self.elap_time_from_ts(self.time_per_step_file, 0, -1)
         d_iter   = self.elap_time_from_ts(self.time_per_step_file, 3, -3)
         d_perf   =  d_ts | d_elap_t | d_elap_ts | d_iter
         # NM DATA:
-        d_rl     = self.get_resolution_layout(self.lay_file)
+        #d_rl     = self.resolution_layout(self.lay_file)
         d_tile   = self.get_tiling_setup(self.namelist)
+        print(d_tile)
         d_ss     = self.sim_secs(self.namelist)
-        d_jpnij  = self.jpni_jpnj(self.namelist)
-        nm_data  = d_jpnij | d_rl | d_tile | d_ss
+        #d_jpnij  = self.jpni_jpnj(self.namelist)
 
-        # DERIVED DATA:
-        #ts_x_s   = {"steps_per_sec" : None}
-        #sim_days = None
-        #sdpd     = {"sdpd": None}
-        #sdpd_iter= {"sdpd_iter": None}
-
-        #exec_stats = d_slurm | d_ts | d_perf | d_tile | ts_x_s | sdpd | sdpd_iter
-        exec_stats = d_slurm | d_ts | d_perf | d_tile
-        all_data = d_slurm | exec_stats | nm_data
+        exec_stats = d_slurm | d_ts | d_perf
+        all_data = d_slurm | exec_stats
 
         self._add_result("exec_stats", {"rundir": self.rundir} | exec_stats)
-        self._add_result("nm_data", {"rundir": self.rundir} | nm_data)
-        self._add_result("tiling", {"rundir": self.rundir} | d_tile)
+        self._add_result("nm_data", {"rundir": self.rundir} )
+        self._add_result("tiling", {"rundir": self.rundir})
 
         self._add_result("main", {"rundir": self.rundir} | all_data)
 

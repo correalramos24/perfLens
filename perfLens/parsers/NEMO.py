@@ -1,7 +1,8 @@
 from perfLens.parsers.EnvParser import EnvParser
 from perfLens.parserManager import register_parser
 
-from utils.utils_files import *
+from py_utils.utils_files import file_exists
+from py_utils.logger import MyLogger
 
 import netCDF4 as nc
 

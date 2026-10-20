@@ -10,19 +10,18 @@ The user can *list*, *show* and/or *save* the results.
 
 ## Installation & Usage
 
-Clone the repository with --recursive or initialize the submodules:
+Dependencies are managed with [uv](https://docs.astral.sh/uv/):
 ````bash
-git clone https://github.com/correalramos24/perfLens.git --recursive
-# OR
 git clone https://github.com/correalramos24/perfLens.git
-cd YAW
-git submodule init
-git submodule update
+cd perfLens
+uv sync              # create .venv and install dependencies
+uv run perfLens -h   # run the CLI
+uv run pytest        # run the tests
 ````
 
-The perfLens packages comes with a command line interface to be used on-the-fly.
-To use the cli, add the bin folder to your system PATH environment variable
-and invoke perfLens using `perfLens`.
+Alternatively, add the `bin` folder to your PATH and invoke `perfLens`
+directly (it wraps `uv run`), or install it as a global tool with
+`uv tool install .`.
 
 
 ## Extend functionalities
