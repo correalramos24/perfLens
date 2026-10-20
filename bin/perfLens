@@ -5,8 +5,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$SCRIPT_DIR/.."
 
 if [ -x "$PROJECT_DIR/.venv/bin/python" ]; then
-    exec "$PROJECT_DIR/.venv/bin/python" -m perfLens.cli "$@"
+    exec "$PROJECT_DIR/.venv/bin/python" -m perfLens "$@"
 else
     export PYTHONPATH="$PROJECT_DIR${PYTHONPATH:+:$PYTHONPATH}"
-    exec python3 -m perfLens.cli "$@"
+    exec python3 -m perfLens "$@"
 fi

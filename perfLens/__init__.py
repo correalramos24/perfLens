@@ -1,7 +1,5 @@
+"""perfLens: gather performance metrics from rundirs."""
+__version__ = "0.2.0"
 
-
-
-from perfLens.parsers.AbstractParser import AbstractParser
-from perfLens.parsers.EnvParser import EnvParser
-from perfLens.parsers.MemParser import MemParser
-from perfLens.parsers.PidstatParser import PidstatParser
+from perfLens.core import collect  # noqa: E402
+from perfLens.parsers import PARSERS  # noqa: E402

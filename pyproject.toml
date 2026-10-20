@@ -1,30 +1,4 @@
-[project]
-name = "perflens"
-version = "0.1.0"
-description = "Gather performance metrics from rundirs."
-readme = "README.md"
-license = { file = "LICENSE" }
-authors = [{ name = "Victor Correal" }]
-requires-python = ">=3.10"
-dependencies = [
-    "pandas>=2.0",
-    "py-utils @ git+https://github.com/correalramos24/py_utils.git@main",
-]
-
-[project.scripts]
-perfLens = "perfLens.cli:main"
-
-[project.optional-dependencies]
-test = [
-    "pytest>=8.0",
-]
-
+# Metadata lives in setup.py, so old setuptools/pip (python 3.6) can build it.
 [build-system]
-requires = ["setuptools>=64"]
+requires = ["setuptools>=40.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-include = ["perfLens", "perfLens.*"]
-
-[tool.pytest.ini_options]
-testpaths = ["perfLensTests"]
