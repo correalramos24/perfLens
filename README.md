@@ -13,27 +13,37 @@ that can be printed, saved to CSV or used from Python.
 
 ## Installation
 
-Requirements: Python >= 3.6 and pip. The only dependency is pandas.
+Requirements: Python >= 3.6. The only dependency is pandas.
+The `deploy/` scripts install perfLens into a virtual environment.
 
-### From a clone
+### With internet access
 ````bash
 git clone https://github.com/correalramos24/perfLens.git
 cd perfLens
-python3 -m venv .venv
-.venv/bin/pip install --upgrade pip
-.venv/bin/pip install -e .
-.venv/bin/perfLens --help
+deploy/install.sh                                  # venv in .venv
+deploy/install.sh -d ~/venvs/perfLens -l ~/.local/bin   # custom venv + perfLens in PATH
 ````
-Add the `bin` folder to your `PATH` to call `perfLens` from anywhere: it
-runs the clone with `.venv/bin/python`, or with `python3` when there is no
-`.venv` (pandas must be installed for that interpreter then).
+Options: `-p PYTHON` interpreter for the venv, `-d DIR` venv folder,
+`-l DIR` link the `perfLens` command into DIR, `-e` editable install for
+development. Re-run it to upgrade perfLens.
 
-### Directly from GitHub
+### Without internet access (e.g. HPC clusters)
+On a machine with internet, download perfLens and its dependencies into a
+`wheelhouse/` folder, for the Python version of the target machine:
 ````bash
-python3 -m venv ~/.venvs/perfLens
-~/.venvs/perfLens/bin/pip install git+https://github.com/correalramos24/perfLens.git@overhaul
-ln -s ~/.venvs/perfLens/bin/perfLens ~/.local/bin/perfLens   # any folder in your PATH
+deploy/build_wheelhouse.sh -t 3.6.8      # full version of the target python
 ````
+Copy the clone (including `wheelhouse/`) to the target machine and run:
+````bash
+deploy/install.sh -w wheelhouse -l ~/.local/bin
+````
+Without `-t`, the wheelhouse targets the python used to build it (`-p`).
+`-P PLATFORM` selects another platform (default: x86_64 Linux).
+
+### Running from the clone
+`bin/perfLens` runs the clone with `.venv/bin/python` (as created by
+`deploy/install.sh`), or with `python3` when there is no `.venv`.
+Add the `bin` folder to your `PATH` to call it from anywhere.
 
 ## Usage
 
